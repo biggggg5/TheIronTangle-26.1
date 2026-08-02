@@ -1,13 +1,13 @@
 {
-  "itemGroup.examplemod": "Example Mod Tab",
-  "block.examplemod.example_block": "Example Block",
-  "item.examplemod.example_item": "Example Item",
+  "item.theirontanglemod.remote_portal_controller": "Remote Portal Controller",
+  "item.theirontanglemod.remote_portal_controller.none_in_range": "There are no Destination Calculators in range.",
+  "item.theirontanglemod.ancient_engine_minecart": "Ancient Engine Minecart",
 
-  "examplemod.configuration.title": "Example Mod Configs",
-  "examplemod.configuration.section.examplemod.common.toml": "Example Mod Configs",
-  "examplemod.configuration.section.examplemod.common.toml.title": "Example Mod Configs",
-  "examplemod.configuration.items": "Item List",
-  "examplemod.configuration.logDirtBlock": "Log Dirt Block",
-  "examplemod.configuration.magicNumberIntroduction": "Magic Number Text",
-  "examplemod.configuration.magicNumber": "Magic Number"
+  "block.theirontanglemod.refined_obsidian": "Refined Obsidian",
+  "block.theirontanglemod.ancient_engine": "Ancient_Engine",
+  "block.theirontanglemod.railway_portal": "Railway Portal",
+  "block.theirontanglemod.destination_calculator": "Destination Calculator",
+  "block.theirontanglemod.flint_rail": "Flint Rail",
+
+  "creativetab.theirontanglemod.creative_tab": "The Iron Tangle"
 }
