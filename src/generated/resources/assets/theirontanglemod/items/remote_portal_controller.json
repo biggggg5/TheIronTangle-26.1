@@ -1,0 +1,6 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "theirontanglemod:item/remote_portal_controller"
+  }
+}

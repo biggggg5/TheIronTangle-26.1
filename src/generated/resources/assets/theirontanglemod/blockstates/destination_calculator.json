@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "theirontanglemod:block/destination_calculator",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "theirontanglemod:block/destination_calculator"
+    },
+    "facing=south": {
+      "model": "theirontanglemod:block/destination_calculator",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "theirontanglemod:block/destination_calculator",
+      "y": 270
+    }
+  }
+}

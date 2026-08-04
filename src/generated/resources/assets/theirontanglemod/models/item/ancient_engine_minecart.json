@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "theirontanglemod:item/ancient_engine_minecart"
+  }
+}

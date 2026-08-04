@@ -28,7 +28,7 @@ public class ModBlocks {
             properties -> new Block(properties.strength(50f, 1200f)
                     .requiresCorrectToolForDrops().sound(SoundType.STONE)));
     public static final DeferredBlock<Block> ANCIENT_ENGINE = registerBlock("ancient_engine",
-            properties -> new Block(properties.strength(3.5f)
+            properties -> new Block(properties.strength(3.5f).noOcclusion()
                     .requiresCorrectToolForDrops().sound(SoundType.STONE)));
 
     public static final DeferredBlock<Block> RAILWAY_PORTAL_BLOCK = registerBlock("railway_portal",
@@ -38,7 +38,7 @@ public class ModBlocks {
             properties -> new DestinationCalculatorBlock(properties.strength(4f)
                     .requiresCorrectToolForDrops().sound(SoundType.IRON)));
     public static final DeferredBlock<Block> FLINT_RAIL_BLOCK = registerBlock("flint_rail",
-            properties -> new FlintRailBlock(properties.strength(2f)
+            properties -> new FlintRailBlock(properties.strength(2f).noOcclusion()
                     .requiresCorrectToolForDrops().sound(SoundType.METAL)));
 
 

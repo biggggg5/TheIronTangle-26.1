@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/orientable_with_bottom",
+  "textures": {
+    "bottom": "theirontanglemod:block/destination_calculator_bottom",
+    "front": "theirontanglemod:block/destination_calculator_front",
+    "side": "theirontanglemod:block/destination_calculator_side",
+    "top": "theirontanglemod:block/destination_calculator_top"
+  }
+}

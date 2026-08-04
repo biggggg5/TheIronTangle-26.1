@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "theirontanglemod:item/remote_portal_controller"
+  }
+}
