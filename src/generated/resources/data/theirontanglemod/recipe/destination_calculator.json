@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "tangle",
+  "key": {
+    "G": "minecraft:glass",
+    "I": "minecraft:iron_block",
+    "O": "theirontanglemod:refined_obsidian",
+    "R": "minecraft:redstone_block"
+  },
+  "pattern": [
+    "ROR",
+    "OGO",
+    "IOI"
+  ],
+  "result": {
+    "id": "theirontanglemod:destination_calculator"
+  }
+}

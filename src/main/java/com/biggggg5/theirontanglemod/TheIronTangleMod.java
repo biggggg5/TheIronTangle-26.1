@@ -1,6 +1,7 @@
 package com.biggggg5.theirontanglemod;
 
 import com.biggggg5.theirontanglemod.block.ModBlocks;
+import com.biggggg5.theirontanglemod.block.entity.ModBlockEntities;
 import com.biggggg5.theirontanglemod.creativemodetab.ModCreativeModeTabs;
 import com.biggggg5.theirontanglemod.item.ModItems;
 import org.slf4j.Logger;
@@ -55,6 +56,8 @@ public class TheIronTangleMod {
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+
+        ModBlockEntities.register(modEventBus);
 
 
         // Register ourselves for server and other game events we are interested in.

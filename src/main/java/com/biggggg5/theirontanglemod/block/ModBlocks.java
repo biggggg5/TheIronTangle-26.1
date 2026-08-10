@@ -19,9 +19,7 @@ public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS =
             DeferredRegister.createBlocks(TheIronTangleMod.MOD_ID);
 
-    //portal
-    //destination calc
-    //rails
+
 
 
     public static final DeferredBlock<Block> REFINED_OBSIDIAN = registerBlock("refined_obsidian",
@@ -33,12 +31,12 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> RAILWAY_PORTAL_BLOCK = registerBlock("railway_portal",
             properties -> new RailwayPortalBlock(properties.strength(-1f)
-                    .requiresCorrectToolForDrops().sound(SoundType.GLASS)));
+                    .requiresCorrectToolForDrops().noCollision().noLootTable().sound(SoundType.GLASS)));
     public static final DeferredBlock<Block> DESTINATION_CALCULATOR = registerBlock("destination_calculator",
             properties -> new DestinationCalculatorBlock(properties.strength(4f)
                     .requiresCorrectToolForDrops().sound(SoundType.IRON)));
     public static final DeferredBlock<Block> FLINT_RAIL_BLOCK = registerBlock("flint_rail",
-            properties -> new FlintRailBlock(properties.strength(2f).noOcclusion()
+            properties -> new FlintRailBlock(properties.strength(2f).noOcclusion().noCollision()
                     .requiresCorrectToolForDrops().sound(SoundType.METAL)));
 
 

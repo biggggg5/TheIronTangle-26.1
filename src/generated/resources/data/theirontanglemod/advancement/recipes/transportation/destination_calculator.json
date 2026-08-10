@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_refined_obsidian": {
+      "conditions": {
+        "items": [
+          {
+            "items": "theirontanglemod:refined_obsidian"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "theirontanglemod:destination_calculator"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_refined_obsidian"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "theirontanglemod:destination_calculator"
+    ]
+  }
+}

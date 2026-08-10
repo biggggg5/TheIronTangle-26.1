@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "tangle",
+  "key": {
+    "G": "minecraft:glass",
+    "I": "minecraft:iron_ingot",
+    "R": "minecraft:redstone"
+  },
+  "pattern": [
+    " I ",
+    "RGR",
+    "IRI"
+  ],
+  "result": {
+    "id": "theirontanglemod:remote_portal_controller"
+  }
+}

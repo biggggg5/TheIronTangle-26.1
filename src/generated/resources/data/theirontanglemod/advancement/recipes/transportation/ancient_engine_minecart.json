@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_ancient_engine": {
+      "conditions": {
+        "items": [
+          {
+            "items": "theirontanglemod:ancient_engine"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "theirontanglemod:ancient_engine_minecart"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_ancient_engine"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "theirontanglemod:ancient_engine_minecart"
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "tangle",
+  "ingredients": [
+    "theirontanglemod:ancient_engine",
+    "minecraft:minecart"
+  ],
+  "result": {
+    "id": "theirontanglemod:ancient_engine_minecart"
+  }
+}
