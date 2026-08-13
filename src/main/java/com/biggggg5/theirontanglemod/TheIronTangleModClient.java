@@ -1,5 +1,8 @@
 package com.biggggg5.theirontanglemod;
 
+import com.biggggg5.theirontanglemod.menu.ModMenuTypes;
+import com.biggggg5.theirontanglemod.menu.custom.CalculatorMenu;
+import com.biggggg5.theirontanglemod.menu.custom.CalculatorScreen;
 import net.minecraft.client.Minecraft;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -7,6 +10,7 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 
@@ -27,5 +31,10 @@ public class TheIronTangleModClient {
         // Some client setup code
         TheIronTangleMod.LOGGER.info("HELLO FROM CLIENT SETUP");
         TheIronTangleMod.LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+    }
+
+    @SubscribeEvent
+    public static void registerScreens(RegisterMenuScreensEvent event) {
+        event.register(ModMenuTypes.CALCULATOR_MENU.get(), CalculatorScreen::new);
     }
 }

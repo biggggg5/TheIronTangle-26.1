@@ -7,6 +7,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
@@ -43,7 +44,6 @@ public class DestinationCalculatorBlock extends BaseEntityBlock {
         builder.add(FACING);
     }
 
-
     @Override
     protected MapCodec<? extends BaseEntityBlock> codec() {
         return CODEC;
@@ -66,6 +66,9 @@ public class DestinationCalculatorBlock extends BaseEntityBlock {
             }
 
             placePortalBlocks(level, match);
+            if (level.getBlockEntity(pos) instanceof DestinationCalculatorBlockEntity calculatorBE) {
+                player.openMenu(new SimpleMenuProvider(calculatorBE, Component.translatable("block.theirontanglemod.destination_calculator")), pos);
+            }
             return InteractionResult.CONSUME;
         }
         return InteractionResult.SUCCESS;
@@ -111,8 +114,8 @@ public class DestinationCalculatorBlock extends BaseEntityBlock {
                     )
                     .where('O', BlockInWorld.hasState(BlockStatePredicate.forBlock(ModBlocks.REFINED_OBSIDIAN.get())))
                     .where('C', BlockInWorld.hasState(BlockStatePredicate.forBlock(ModBlocks.DESTINATION_CALCULATOR.get())))
-                    .where('R', BlockInWorld.hasState(BlockStatePredicate.forBlock(ModBlocks.FLINT_RAIL_BLOCK.get())))
-                    .where('A', BlockInWorld.hasState(BlockStatePredicate.forBlock(Blocks.AIR)))
+                    .where('R', BlockInWorld.hasState(state -> state.is(ModBlocks.FLINT_RAIL_BLOCK.get()) || state.is(ModBlocks.RAILWAY_PORTAL_BLOCK.get())))
+                    .where('A', BlockInWorld.hasState(state -> state.is(Blocks.AIR) || state.is(ModBlocks.RAILWAY_PORTAL_BLOCK.get())))
                     .where('.', BlockInWorld.hasState(state -> true))
                     .build();
 
