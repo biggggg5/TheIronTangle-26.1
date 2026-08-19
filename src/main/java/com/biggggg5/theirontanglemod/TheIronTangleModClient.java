@@ -3,6 +3,8 @@ package com.biggggg5.theirontanglemod;
 import com.biggggg5.theirontanglemod.menu.ModMenuTypes;
 import com.biggggg5.theirontanglemod.menu.custom.CalculatorMenu;
 import com.biggggg5.theirontanglemod.menu.custom.CalculatorScreen;
+import com.biggggg5.theirontanglemod.menu.custom.ListMenu;
+import com.biggggg5.theirontanglemod.menu.custom.ListScreen;
 import net.minecraft.client.Minecraft;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -36,5 +38,6 @@ public class TheIronTangleModClient {
     @SubscribeEvent
     public static void registerScreens(RegisterMenuScreensEvent event) {
         event.register(ModMenuTypes.CALCULATOR_MENU.get(), CalculatorScreen::new);
+        event.register(ModMenuTypes.LIST_MENU.get(), ListScreen::new);
     }
 }

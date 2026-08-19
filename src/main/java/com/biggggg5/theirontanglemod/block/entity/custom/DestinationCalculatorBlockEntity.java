@@ -1,7 +1,9 @@
 package com.biggggg5.theirontanglemod.block.entity.custom;
 
 import com.biggggg5.theirontanglemod.block.entity.ModBlockEntities;
+import com.biggggg5.theirontanglemod.block.entity.custom.util.LocationData;
 import com.biggggg5.theirontanglemod.menu.custom.CalculatorMenu;
+import com.biggggg5.theirontanglemod.menu.custom.ListMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -13,6 +15,7 @@ import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.MenuProvider;
+import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -37,6 +40,8 @@ public class DestinationCalculatorBlockEntity extends BlockEntity implements Men
     private Direction entryDirection;
     private Direction exitDirection;
     private String portalName = "";
+    public LocationData locallocationData;
+    public LocationData targetlocationData;
 
     public final ItemStacksResourceHandler inventory = new ItemStacksResourceHandler(1) {
         @Override
@@ -60,6 +65,15 @@ public class DestinationCalculatorBlockEntity extends BlockEntity implements Men
 
     public void clearContents() {
         inventory.set(0, ItemResource.EMPTY, 0);
+    }
+
+    public MenuProvider getFuelMenuProvider(){
+        return new SimpleMenuProvider((id, inv, p) -> new CalculatorMenu(id, inv, this, inventory),
+                Component.translatable("block.theirontanglemod.destination_calculator"));
+    }
+    public MenuProvider getListMenuProvider(){
+        return new SimpleMenuProvider((id, inv, p) -> new ListMenu(id, inv, this, inventory),
+                Component.translatable("block.theirontanglemod.destination_calculator_list"));
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.biggggg5.theirontanglemod.menu;
 
 import com.biggggg5.theirontanglemod.TheIronTangleMod;
 import com.biggggg5.theirontanglemod.menu.custom.CalculatorMenu;
+import com.biggggg5.theirontanglemod.menu.custom.ListMenu;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
@@ -17,6 +18,9 @@ public class ModMenuTypes {
 
     public static final DeferredHolder<MenuType<?>, MenuType<CalculatorMenu>> CALCULATOR_MENU =
             registerMenuType("calculator_menu", CalculatorMenu::new);
+
+    public static final DeferredHolder<MenuType<?>, MenuType<ListMenu>> LIST_MENU =
+            registerMenuType("list_menu", ListMenu::new);
 
 
     private static <T extends AbstractContainerMenu> DeferredHolder<MenuType<?>, MenuType<T>> registerMenuType(String name,

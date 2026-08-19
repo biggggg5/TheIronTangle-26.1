@@ -67,7 +67,7 @@ public class DestinationCalculatorBlock extends BaseEntityBlock {
 
             placePortalBlocks(level, match);
             if (level.getBlockEntity(pos) instanceof DestinationCalculatorBlockEntity calculatorBE) {
-                player.openMenu(new SimpleMenuProvider(calculatorBE, Component.translatable("block.theirontanglemod.destination_calculator")), pos);
+                player.openMenu(calculatorBE.getFuelMenuProvider(), pos);
             }
             return InteractionResult.CONSUME;
         }

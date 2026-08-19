@@ -1,16 +1,21 @@
 package com.biggggg5.theirontanglemod.menu.custom;
 
 import com.biggggg5.theirontanglemod.TheIronTangleMod;
+import com.biggggg5.theirontanglemod.networking.packet.OpenListPayload;
 import com.biggggg5.theirontanglemod.networking.packet.SaveTextPayload;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.input.KeyEvent;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
+import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.client.network.ClientPacketDistributor;
 
 public class CalculatorScreen extends AbstractContainerScreen<CalculatorMenu> {
@@ -35,7 +40,7 @@ public class CalculatorScreen extends AbstractContainerScreen<CalculatorMenu> {
         textBox.setMaxLength(64);
         addRenderableWidget(textBox);
 
-        addRenderableWidget(Button.builder(Component.literal("S"), btn -> saveText())
+        addRenderableWidget(Button.builder(Component.literal("✔"), btn -> saveText())
                 .bounds(boxX + 111, boxY, 18, 18)
                 .build());
 
@@ -49,7 +54,7 @@ public class CalculatorScreen extends AbstractContainerScreen<CalculatorMenu> {
     }
 
     private void openDestinationMenu(){
-
+        ClientPacketDistributor.sendToServer(new OpenListPayload(menu.blockEntity.getBlockPos()));
     }
 
     private void saveText() {

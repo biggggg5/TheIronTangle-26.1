@@ -4,6 +4,8 @@ import com.biggggg5.theirontanglemod.block.ModBlocks;
 import com.biggggg5.theirontanglemod.block.entity.custom.DestinationCalculatorBlockEntity;
 import com.biggggg5.theirontanglemod.menu.ModMenuTypes;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -30,6 +32,7 @@ public class CalculatorMenu extends AbstractContainerMenu {
         super(ModMenuTypes.CALCULATOR_MENU.get(), containerId);
         this.blockEntity = (DestinationCalculatorBlockEntity) blockEntity;
         this.level = inv.player.level();
+
 
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
