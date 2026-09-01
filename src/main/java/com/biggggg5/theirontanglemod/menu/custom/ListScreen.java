@@ -18,6 +18,11 @@ public class ListScreen extends AbstractContainerScreen<ListMenu> {
         this.inventoryLabelY = 999;
     }
 
+    @Override
+    protected void init() {
+        super.init();
+
+    }
 
     @Override
     public void extractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float a) {

@@ -7,7 +7,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
@@ -65,8 +64,10 @@ public class DestinationCalculatorBlock extends BaseEntityBlock {
                 return InteractionResult.FAIL;
             }
 
+
             placePortalBlocks(level, match);
             if (level.getBlockEntity(pos) instanceof DestinationCalculatorBlockEntity calculatorBE) {
+                calculatorBE.setLocallocationData();
                 player.openMenu(calculatorBE.getFuelMenuProvider(), pos);
             }
             return InteractionResult.CONSUME;

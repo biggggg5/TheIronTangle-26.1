@@ -2,6 +2,7 @@ package com.biggggg5.theirontanglemod.block.entity.custom;
 
 import com.biggggg5.theirontanglemod.block.entity.ModBlockEntities;
 import com.biggggg5.theirontanglemod.block.entity.custom.util.LocationData;
+import com.biggggg5.theirontanglemod.block.entity.custom.util.LocationDataManager;
 import com.biggggg5.theirontanglemod.menu.custom.CalculatorMenu;
 import com.biggggg5.theirontanglemod.menu.custom.ListMenu;
 import net.minecraft.core.BlockPos;
@@ -23,18 +24,19 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.neoforged.neoforge.transfer.item.ItemResource;
 import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
 
 import javax.annotation.Nullable;
-import java.util.Optional;
+import java.util.UUID;
 
 public class DestinationCalculatorBlockEntity extends BlockEntity implements MenuProvider {
 
     private ResourceKey<Level> targetDimension;
-    private ResourceKey<Level> localDimension;
+    private String localDimension;
     private @Nullable BlockPos targetPos;
     private @Nullable BlockPos localPos;
     private Direction entryDirection;
@@ -42,6 +44,7 @@ public class DestinationCalculatorBlockEntity extends BlockEntity implements Men
     private String portalName = "";
     public LocationData locallocationData;
     public LocationData targetlocationData;
+
 
     public final ItemStacksResourceHandler inventory = new ItemStacksResourceHandler(1) {
         @Override
@@ -90,12 +93,43 @@ public class DestinationCalculatorBlockEntity extends BlockEntity implements Men
         setChanged();
     }
 
+    public LocationData getLocallocationData() {
+        return locallocationData;
+    }
+
+    public void setLocallocationData() {
+        if (this.level != null) {
+            this.localDimension = this.level.dimension().toString();
+        }
+        this.localPos = worldPosition;
+        this.entryDirection = getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
+        this.portalName = getPortalName();
+        this.locallocationData = new LocationData(getPortalName(), entryDirection, localPos, localDimension);
+        setChanged();
+        if(!level.isClientSide()) {
+            level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
+        }
+    }
+
+    public void saveLCtoServer() {
+        LocationDataManager locationDataManager = new LocationDataManager();
+        locationDataManager.addLocationData(level.getServer(), this.locallocationData);
+        System.out.print("this is running right?");
+    }
+
 
     @Override
     protected void saveAdditional(ValueOutput output) {
         super.saveAdditional(output);
         output.putChild("inventory", inventory);
         output.putString("portalName", portalName);
+        if (this.locallocationData != null) {
+            output.putInt("x", locallocationData.pos.getX());
+            output.putInt("y", locallocationData.pos.getY());
+            output.putInt("z", locallocationData.pos.getZ());
+            output.putString("direction", locallocationData.direction.getSerializedName());
+            output.putString("dimension", locallocationData.dimension);
+        }
     }
 
     @Override
@@ -103,6 +137,12 @@ public class DestinationCalculatorBlockEntity extends BlockEntity implements Men
         super.loadAdditional(input);
         input.child("inventory").ifPresent(inventory::deserialize);
         this.setPortalName(input.getStringOr("portalName", ""));
+        int x = input.getIntOr("x", 0);
+        int y = input.getIntOr("y", 0);
+        int z = input.getIntOr("z", 0);
+        Direction direction = Direction.byName(input.getStringOr("direction", "north"));
+        String dimension = input.getStringOr("dimension", "overworld");
+        this.locallocationData = new LocationData(getPortalName(), direction == null ? Direction.NORTH : direction, new BlockPos(x, y, z), dimension);
     }
 
     @Override

@@ -23,6 +23,8 @@ public class ModEvents {
         registrar.playToServer(SaveTextPayload.TYPE, SaveTextPayload.STREAM_CODEC, (payload, context) -> {
             if (context.player().level().getBlockEntity(payload.pos()) instanceof DestinationCalculatorBlockEntity be) {
                 be.setPortalName(payload.text());
+                be.setLocallocationData();
+                be.saveLCtoServer();
             }
         });
 

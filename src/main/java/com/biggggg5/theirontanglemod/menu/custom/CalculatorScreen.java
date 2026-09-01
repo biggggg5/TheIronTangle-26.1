@@ -1,12 +1,14 @@
 package com.biggggg5.theirontanglemod.menu.custom;
 
 import com.biggggg5.theirontanglemod.TheIronTangleMod;
+import com.biggggg5.theirontanglemod.block.entity.custom.util.LocationData;
 import com.biggggg5.theirontanglemod.networking.packet.OpenListPayload;
 import com.biggggg5.theirontanglemod.networking.packet.SaveTextPayload;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
+import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.input.KeyEvent;
@@ -42,6 +44,12 @@ public class CalculatorScreen extends AbstractContainerScreen<CalculatorMenu> {
 
         addRenderableWidget(Button.builder(Component.literal("✔"), btn -> saveText())
                 .bounds(boxX + 111, boxY, 18, 18)
+                .tooltip(Tooltip.create(Component.literal(
+                        menu.blockEntity.getLocallocationData().name + " "
+                        + menu.blockEntity.getLocallocationData().pos.toString() + " "
+                        + menu.blockEntity.getLocallocationData().direction.getName() + " "
+                                + menu.blockEntity.getLocallocationData().dimension + " "
+                )))
                 .build());
 
         addRenderableWidget(Button.builder(Component.literal("Destination Selection"), btn -> openDestinationMenu())
@@ -61,6 +69,7 @@ public class CalculatorScreen extends AbstractContainerScreen<CalculatorMenu> {
         String text = textBox.getValue();
         menu.blockEntity.setPortalName(text);
         ClientPacketDistributor.sendToServer(new SaveTextPayload(menu.blockEntity.getBlockPos(), text));
+        menu.blockEntity.setLocallocationData();
     }
 
     @Override
